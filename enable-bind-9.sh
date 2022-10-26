@@ -3,7 +3,7 @@
 DNSIP=$1
 apt-get update
 apt-get install -y bind9 bind9utils bind9-doc
- 
+ttl='$ttl'
 cat <<EOF >/etc/bind/named.conf.options
 acl "trusted" {
     192.168.33.0/24;
@@ -37,7 +37,6 @@ aula104.local.     IN      SOA     ns.aula104.local. dns.aula104.local. (
                 3600         ; retry after 1 hour
                 604800       ; expire after 1 week
                 86400 )      ; minimum TTL of 1 day
-
 aula104.local.          IN      NS      ns.aula104.local.
 ns.aula104.local.       IN      A       $DNSIP
 apache1.aula104.local   IN      A       192.168.33.12
