@@ -8,25 +8,29 @@ LAB = "bind9"
 
 
 maquinas = {
-  "apache" => {
-    "network" => '192.168.33.12',
-    "provision" => {
-      "apache-server" => {"path" => "apache.sh"},
-      "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP},
-      "testing"    => {"path" => "testing.sh"}
-    }},
-    
-  "nginx"  => {
-    "network" => '192.168.33.13',
-    "provision" => {
-      "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP},
-      "testing"    => {"path" => "testing.sh"}
-    }},
-
   "dns"    => {
     "network" => '192.168.33.11',
     "provision" => {
       "dns-server" => {"path" => "enable-bind-9.sh", 'args' => DNSIP},
+    }},
+  "apache1" => {
+    "network" => '192.168.33.12',
+    "provision" => {
+      "apache-server" => {"path" => "apache.sh"},
+      "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP},
+    }},
+  "apache2" => {
+    "network" => '192.168.33.13',
+    "provision" => {
+      "apache-server" => {"path" => "apache.sh"},
+      "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP},
+    }},
+    
+  "nginx"  => {
+    "network" => '192.168.33.14',
+    "provision" => {
+      "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP},
+      "testing"    => {"path" => "testing.sh"}
     }}
 }
 

@@ -8,4 +8,4 @@ ping -a -c 1 apache2.aula104.local
 # curl apache2 --no-progress-meter 
 # curl nginx --no-progress-meter 
 ping -a -c 1 amazon.com
-ping -a -c 1 ns2
+ping -a -c 1 ns1
