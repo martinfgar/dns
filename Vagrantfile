@@ -4,7 +4,7 @@ BOX_IMAGE = "ubuntu/focal64"
 DOMAIN = "aula104.local"
 DNSIP = "192.168.33.11"
 LAB = "bind9"
-
+BOX_DESKTOP = "gusztavvargadr/ubuntu-desktop"
 
 
 maquinas = {
@@ -30,8 +30,14 @@ maquinas = {
     "network" => '192.168.33.14',
     "provision" => {
       "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP},
-      "testing"    => {"path" => "testing.sh"}
-    }}
+      "nginx"      => {"path" => "nginx.sh"},
+    }},
+    "desktop" => {
+      "network" => '192.168.33.15',
+      "provision" => {
+        "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP}
+      }
+    }
 }
 
 Vagrant.configure("2") do |config|
@@ -49,6 +55,12 @@ Vagrant.configure("2") do |config|
         vb.name = "#{key}"
         subconfig.vm.hostname = "#{key}.#{DOMAIN}"
         subconfig.vm.network :private_network, ip: "#{value['network']}",  virtualboxintnet: LAB # ,  name: RED #
+        if "#{key}" == "desktop" then
+          subconfig.vm.box = BOX_DESKTOP
+          vb.gui = true
+          vb.cpus = 2
+          vb.memory = 2048
+        end
       end
       value['provision'].each do |nombre, comand|
         maquina.vm.provision "shell", name: "#{nombre}", path: "#{comand['path']}", args: "#{comand['args']}"
