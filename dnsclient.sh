@@ -1,3 +1,5 @@
 #!/bin/bash
 
- echo -e "nameserver $1\ndomain aula104.local">/etc/resolv.conf
+ echo -e "[Resolve]\nDNS=$1\nDomains=aula104.local">/etc/systemd/resolved.conf
+ systemctl daemon-reload
+ systemctl restart systemd-resolved

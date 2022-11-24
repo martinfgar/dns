@@ -32,12 +32,11 @@ maquinas = {
       "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP},
       "nginx"      => {"path" => "nginx.sh"},
     }},
-    "desktop" => {
-      "network" => '192.168.33.15',
-      "provision" => {
-        "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP}
-      }
-    }
+  "desktop" => {
+    "network" => '192.168.33.15',
+    "provision" => {
+      "dns-client" => {"path" => "dnsclient.sh", 'args' => DNSIP}
+    }},
 }
 
 Vagrant.configure("2") do |config|
